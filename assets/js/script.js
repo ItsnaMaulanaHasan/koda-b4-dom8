@@ -13,16 +13,16 @@ const getData = async (url) => {
 
 const createContainerCharacter = (src, name) => {
   const mainContainer = document.getElementById("container");
-  const containerCharacter = document.createElement("div");
-  const img = document.createElement("img");
-  const nameContainer = document.createElement("div");
-  containerCharacter.className = "item";
+  const containerCharacter = document.querySelector(".item");
+  const cloneContainerCharacter = containerCharacter.cloneNode(true);
+  const img = cloneContainerCharacter.querySelector("img");
+  const nameContainer = cloneContainerCharacter.querySelector("div");
   img.src = src;
-  img.alt = "character";
+  img.alt = name;
   nameContainer.title = name;
   nameContainer.innerText = name;
-  containerCharacter.append(img, nameContainer);
-  mainContainer.append(containerCharacter);
+  cloneContainerCharacter.classList.remove("hidden");
+  mainContainer.append(cloneContainerCharacter);
 };
 
 const main = async () => {
@@ -32,7 +32,6 @@ const main = async () => {
 
   dataCharacters.forEach((character) => {
     createContainerCharacter(character.image, character.name);
-    // console.log(character);
   });
 
   const form = document.getElementById("form-search");
