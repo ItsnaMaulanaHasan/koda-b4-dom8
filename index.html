@@ -4,19 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fect Data DOM</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body>
     <main>
-      <section id="search-bar">
+      <section id="search-bar" class="justify-items-center p-[50px]">
         <form id="form-search" action="" method="">
-          <div class="search-wrapper">
-            <input type="text" name="search" placeholder="Search character..." />
-            <button type="submit"><img src="./assets/icon/icon-search.svg" alt="search icon" /></button>
+          <div class="search-wrapper flex text-center justify-between w-[20rem] p-[10px] border border-[#9a9a9a] rounded-[10px]">
+            <input type="text" name="search" placeholder="Search character..." class="grow bg-transparent focus:outline-none" />
+            <button type="submit"><img src="./assets/icon/icon-search.svg" alt="search icon" class="w-[20px] h-[20px]" /></button>
           </div>
         </form>
       </section>
-      <section id="container"></section>
+      <section id="container" class="grid justify-items-center content-center gap-[20px] md:grid-cols-4 xl:grid-cols-5 p-[20px]">
+        <div class="item flex flex-col justify-center items-center bg-white gap-[14px] p-[20px] w-max rounded-[20px] shadow-xl">
+          <img src="" alt="" class="w-[150px] h-[150px] rounded-[20px]" />
+          <div class="inline-block overflow-hidden whitespace-nowrap text-ellipsis"></div>
+        </div>
+      </section>
     </main>
     <script src="./assets/js/script.js"></script>
   </body>

@@ -32,16 +32,16 @@ const main = async () => {
 
   dataCharacters.forEach((character) => {
     createContainerCharacter(character.image, character.name);
-    console.log(character);
+    // console.log(character);
   });
 
   const form = document.getElementById("form-search");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const mainContainer = document.getElementById("container");
-    mainContainer.replaceChildren();
     const searchValue = e.target.search.value.toLowerCase();
     const characterFilter = dataCharacters.filter((o) => o.name.toLowerCase().includes(searchValue));
+    mainContainer.replaceChildren();
     characterFilter.forEach((character) => {
       createContainerCharacter(character.image, character.name);
     });
