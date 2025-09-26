@@ -12,35 +12,27 @@ const getData = async (url) => {
 };
 
 const createContainerCharacter = (src, name) => {
-  const mainContainer = document.getElementById("container");
-  const containerCharacter = document.querySelector(".item");
-  const cloneContainerCharacter = containerCharacter.cloneNode(true);
-  const img = cloneContainerCharacter.querySelector("img");
-  const nameContainer = cloneContainerCharacter.querySelector("div");
-  img.src = src;
-  img.alt = name;
-  nameContainer.title = name;
-  nameContainer.innerText = name;
-  cloneContainerCharacter.classList.remove("hidden");
-  mainContainer.append(cloneContainerCharacter);
+  const cloneContainerCharacter = $(".item").clone(true);
+  cloneContainerCharacter.find("img").attr({ src, alt: name });
+  cloneContainerCharacter.find("div").attr({ title: name }).text(name);
+  cloneContainerCharacter.removeClass("item hidden");
+  cloneContainerCharacter.addClass("item-clone");
+  $("#container").append(cloneContainerCharacter);
 };
 
 const main = async () => {
   const data = await getData(url);
   const dataCharacters = data.results;
-  console.log(dataCharacters);
 
   dataCharacters.forEach((character) => {
     createContainerCharacter(character.image, character.name);
   });
 
-  const form = document.getElementById("form-search");
-  form.addEventListener("submit", (e) => {
+  $("#form-search").on("submit", function (e) {
     e.preventDefault();
-    const mainContainer = document.getElementById("container");
     const searchValue = e.target.search.value.toLowerCase();
     const characterFilter = dataCharacters.filter((o) => o.name.toLowerCase().includes(searchValue));
-    mainContainer.replaceChildren();
+    $(".item-clone").remove();
     characterFilter.forEach((character) => {
       createContainerCharacter(character.image, character.name);
     });
